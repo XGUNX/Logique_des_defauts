@@ -37,3 +37,19 @@ class Predicate:
 
     def __repr__(self):
         return self.__str__()
+    def is_variable(self, arg):
+        return arg.islower()
+
+
+    def substitute(self, substitution: dict):
+        """
+          substitution : {"x": "Rene"}
+           """
+        new_args = [
+           substitution.get(arg, arg) for arg in self.arguments
+          ]
+        return Predicate(
+        self.name,
+        new_args,
+        self.negated
+    )
